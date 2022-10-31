@@ -42,16 +42,39 @@ class MainWindow(MDApp):
             color = (0, 0, 0, 1),
             font_size = 16)
         
-        self.btnSelect = Button(
+        self.btnSelectDirectoryToOpen = Button(
             text = "Wybierz",
             size_hint = (0.1, 0.05),
             pos_hint = {"center_x": 0.35, "center_y": 0.93})
+        
+    def create_button_to_select_directory_to_save(self):
+        self.labelSaveDirectoryInfo = Label(
+            text = "Ścieżka pliku do zapisu:",
+            size_hint = (0.2, 0.02),
+            pos_hint = {"center_x": 0.6, "center_y": 0.97},
+            color = (0, 0, 0, 1),
+            font_size = 16)
+        
+        self.labelSaveDirectory = Label(
+            text = r"C:\test\test\test\test.xml",
+            size_hint = (0.3, 0.02),
+            pos_hint = {"center_x": 0.6, "center_y": 0.93},
+            color = (0, 0, 0, 1),
+            font_size = 16)
+        
+        self.btnSelectDirectoryToSave = Button(
+            text = "Wybierz",
+            size_hint = (0.1, 0.05),
+            pos_hint = {"center_x": 0.83, "center_y": 0.93})
             
     def add_widgets_to_screen(self):
         self.screen.add_widget(self.dataTable)
-        self.screen.add_widget(self.btnSelect)
+        self.screen.add_widget(self.btnSelectDirectoryToOpen)
         self.screen.add_widget(self.labelSelectDirectoryInfo)
         self.screen.add_widget(self.labelSelectDirectory)
+        self.screen.add_widget(self.labelSaveDirectory)
+        self.screen.add_widget(self.labelSaveDirectoryInfo)
+        self.screen.add_widget(self.btnSelectDirectoryToSave)
     
     def build(self):
         Window.size = 1400, 900     
@@ -60,6 +83,7 @@ class MainWindow(MDApp):
         # self.btnAdd.bind(on_press = partial(self.add_row, "Nazwa", "cena", "ilosc"))
         self.create_data_table()
         self.create_button_to_select_directory_to_open()
+        self.create_button_to_select_directory_to_save()
         self.add_widgets_to_screen()
         return self.screen
     

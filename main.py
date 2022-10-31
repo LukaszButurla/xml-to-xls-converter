@@ -17,16 +17,14 @@ class MainWindow(MDApp):
         
     def create_data_table(self):
         self.dataTable = MDDataTable(
+            use_pagination = True,
+            rows_num = 100,
             size_hint = (0.9, 0.8),
             pos_hint = {"center_x" : 0.5, "center_y" : 0.5},
             column_data = [
                 ("Nazwa", dp(100)),
                 ("Kwota", dp(50)),
                 ("Ilość", dp(50))
-            ],
-            row_data = [
-                ("Nazwa 1", 100, 20),
-                ("Nazwa 2", 50, 30)
             ])
     def add_widgets_to_screen(self):
         self.screen.add_widget(self.dataTable)

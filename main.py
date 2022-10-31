@@ -5,6 +5,7 @@ from kivy.core.window import Window
 from kivymd.uix.datatables import MDDataTable
 from kivymd.uix.screen import Screen
 from kivy.uix.button import Button
+from kivy.uix.label import Label
 from kivy.metrics import dp
 
 
@@ -24,18 +25,41 @@ class MainWindow(MDApp):
             column_data = [
                 ("Nazwa", dp(100)),
                 ("Kwota", dp(50)),
-                ("Ilość", dp(50))
-            ])
+                ("Ilość", dp(50))])
+
+    def create_button_to_select_directory_to_open(self):
+        self.labelSelectDirectoryInfo = Label(
+            text = "Ścieżka pliku do otwarcia:",
+            size_hint = (0.2, 0.02),
+            pos_hint = {"center_x": 0.12, "center_y": 0.97},
+            color = (0, 0, 0, 1),
+            font_size = 16)
+        
+        self.labelSelectDirectory = Label(
+            text = r"C:\test\test\test\test.xml",
+            size_hint = (0.3, 0.02),
+            pos_hint = {"center_x": 0.12, "center_y": 0.93},
+            color = (0, 0, 0, 1),
+            font_size = 16)
+        
+        self.btnSelect = Button(
+            text = "Wybierz",
+            size_hint = (0.1, 0.05),
+            pos_hint = {"center_x": 0.35, "center_y": 0.93})
+            
     def add_widgets_to_screen(self):
         self.screen.add_widget(self.dataTable)
-        self.screen.add_widget(self.btnAdd)
+        self.screen.add_widget(self.btnSelect)
+        self.screen.add_widget(self.labelSelectDirectoryInfo)
+        self.screen.add_widget(self.labelSelectDirectory)
     
     def build(self):
         Window.size = 1400, 900     
         self.screen = Screen()
-        self.btnAdd = Button(text = "Add", size_hint = (0.2, 0.2), pos_hint = {"center_x": 0.9, "center_y": 0.9})
-        self.btnAdd.bind(on_press = partial(self.add_row, "Nazwa", "cena", "ilosc"))
+        # self.btnAdd = Button(text = "Add", size_hint = (0.2, 0.2), pos_hint = {"center_x": 0.9, "center_y": 0.9})
+        # self.btnAdd.bind(on_press = partial(self.add_row, "Nazwa", "cena", "ilosc"))
         self.create_data_table()
+        self.create_button_to_select_directory_to_open()
         self.add_widgets_to_screen()
         return self.screen
     

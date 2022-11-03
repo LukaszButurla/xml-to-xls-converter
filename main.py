@@ -7,6 +7,7 @@ from kivymd.uix.screen import Screen
 from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.metrics import dp
+from tkinter import filedialog
 
 
 class MainWindow(MDApp):
@@ -15,6 +16,10 @@ class MainWindow(MDApp):
         
         self.dataTable.add_row((name, price, amount))
         # return super().on_dismiss()
+        
+    def select_file_window(self, btn):
+        self.selectedFile = filedialog.askopenfilename()
+        self.labelSelectDirectory.text = self.selectedFile
         
     def create_data_table(self):
         self.dataTable = MDDataTable(
@@ -37,15 +42,18 @@ class MainWindow(MDApp):
         
         self.labelSelectDirectory = Label(
             text = r"C:\test\test\test\test.xml",
-            size_hint = (0.3, 0.02),
-            pos_hint = {"center_x": 0.12, "center_y": 0.93},
+            halign = "left",
+            size_hint = (0.5, 0.5),
+            pos_hint = {"center_x": 0.23, "center_y": 0.93},
             color = (0, 0, 0, 1),
             font_size = 16)
+        self.labelSelectDirectory.text_size = (480, 30)
         
         self.btnSelectDirectoryToOpen = Button(
             text = "Wybierz",
             size_hint = (0.1, 0.05),
-            pos_hint = {"center_x": 0.35, "center_y": 0.93})
+            pos_hint = {"center_x": 0.4, "center_y": 0.93})
+        self.btnSelectDirectoryToOpen.bind(on_press = partial(self.select_file_window))
         
     def create_button_to_select_directory_to_save(self):
         self.labelSaveDirectoryInfo = Label(

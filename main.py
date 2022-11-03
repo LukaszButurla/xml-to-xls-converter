@@ -9,6 +9,8 @@ from kivy.uix.label import Label
 from kivy.metrics import dp
 from tkinter import filedialog
 
+from datatable import DataTableWithData
+
 
 class MainWindow(MDApp):
     
@@ -20,17 +22,6 @@ class MainWindow(MDApp):
     def select_file_window(self, btn):
         self.selectedFile = filedialog.askopenfilename()
         self.labelSelectDirectory.text = self.selectedFile
-        
-    def create_data_table(self):
-        self.dataTable = MDDataTable(
-            use_pagination = True,
-            rows_num = 100,
-            size_hint = (0.9, 0.8),
-            pos_hint = {"center_x" : 0.5, "center_y" : 0.5},
-            column_data = [
-                ("Nazwa", dp(100)),
-                ("Kwota", dp(50)),
-                ("Ilość", dp(50))])
 
     def create_button_to_select_directory_to_open(self):
         self.labelSelectDirectoryInfo = Label(
@@ -83,7 +74,6 @@ class MainWindow(MDApp):
         )
             
     def add_widgets_to_screen(self):
-        self.screen.add_widget(self.dataTable)
         self.screen.add_widget(self.btnSelectDirectoryToOpen)
         self.screen.add_widget(self.labelSelectDirectoryInfo)
         self.screen.add_widget(self.labelSelectDirectory)
@@ -97,11 +87,11 @@ class MainWindow(MDApp):
         self.screen = Screen()
         # self.btnAdd = Button(text = "Add", size_hint = (0.2, 0.2), pos_hint = {"center_x": 0.9, "center_y": 0.9})
         # self.btnAdd.bind(on_press = partial(self.add_row, "Nazwa", "cena", "ilosc"))
-        self.create_data_table()
         self.create_button_to_select_directory_to_open()
         self.create_button_to_select_directory_to_save()
         self.create_button_to_convert()
         self.add_widgets_to_screen()
+        self.datatableClass = DataTableWithData(self.screen)
         return self.screen
     
 

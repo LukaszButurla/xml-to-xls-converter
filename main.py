@@ -10,6 +10,7 @@ from kivy.metrics import dp
 from tkinter import filedialog
 
 from datatable import DataTableWithData
+from converter import Converter
 
 
 class MainWindow(MDApp):
@@ -22,6 +23,7 @@ class MainWindow(MDApp):
     def select_file_window(self, btn):
         self.selectedFile = filedialog.askopenfilename()
         self.labelSelectDirectory.text = self.selectedFile
+        Converter().open_file_to_read(self.selectedFile)
 
     def create_button_to_select_directory_to_open(self):
         self.labelSelectDirectoryInfo = Label(

@@ -1,3 +1,5 @@
+import csv
+
 class Converter:
     
     def __init__(self, screen, datatableClass):
@@ -13,6 +15,8 @@ class Converter:
             amountOfSubjectsStart = lines.find("<LiczbaPozycji>")
             amountOfSubjectsEnd = lines.find("</LiczbaPozycji>")
             amountOfSubjects = lines[amountOfSubjectsStart+15:amountOfSubjectsEnd]
+            
+            self.listOfData = []
             
             for subject in range(int(amountOfSubjects)):
                 
@@ -37,8 +41,31 @@ class Converter:
                     lines = lines[subjectEnd+10:]
                     
                     self.datatableClass.add_row(index, price, amount)
-                
+                    self.listOfData.append([index, price, amount])
+                                    
                 except:
                     print("Error")
+                
+            else:
+                self.write_to_file()
+                    
+    def write_to_file(self):
+            
+        path = r"C:\test\test.xls"
+        
+        try:
+        
+            with open(path, "w+", encoding="utf-8", newline="") as f:
+                    
+                writer = csv.writer(f)
+            
+                for data in self.listOfData:
+                    writer.writerow(data)
+                    
+        except:
+            print("Error save")
+            
+        
+        
             
             

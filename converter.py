@@ -6,24 +6,38 @@ class Converter:
 
             lines = fileRead.read()
             
-            subjectStart = lines.find("<Pozycja>")
-            subjectEnd = lines.find("</Pozycja>")
-            subject = lines[subjectStart:subjectEnd]
+            amountOfSubjectsStart = lines.find("<LiczbaPozycji>")
+            amountOfSubjectsEnd = lines.find("</LiczbaPozycji>")
+            amountOfSubjects = lines[amountOfSubjectsStart+15:amountOfSubjectsEnd]
             
-            indexStart = subject.find("<Indeks>")
-            indexEnd = subject.find("</Indeks>")
-            index = subject[indexStart+8:indexEnd]
+            for subject in range(int(amountOfSubjects)):
+                
+                try:
             
-            amountStart = subject.find("<Ilosc>")
-            amountEnd = subject.find("</Ilosc>")
-            amount = subject[amountStart+7:amountEnd]
+                    subjectStart = lines.find("<Pozycja>")
+                    subjectEnd = lines.find("</Pozycja>")
+                    subject = lines[subjectStart:subjectEnd]
+                    
+                    indexStart = subject.find("<Indeks>")
+                    indexEnd = subject.find("</Indeks>")
+                    index = subject[indexStart+8:indexEnd]
+                    
+                    amountStart = subject.find("<Ilosc>")
+                    amountEnd = subject.find("</Ilosc>")
+                    amount = subject[amountStart+7:amountEnd]
+                    
+                    priceStart = subject.find("<Cena>")
+                    priceEnd = subject.find("</Cena>")
+                    price = subject[priceStart+6:priceEnd]
+                    
+                    lines = lines[subjectEnd+10:]
+                    
+                    
+                    print(index)
+                    print(amount)
+                    print(price)
+                
+                except:
+                    print("Error")
             
-            priceStart = subject.find("<Cena>")
-            priceEnd = subject.find("</Cena>")
-            price = subject[priceStart+6:priceEnd]
-            
-            
-            print(index)
-            print(amount)
-            print(price)
             

@@ -20,6 +20,13 @@ class MainWindow(MDApp):
         self.selectedFile = filedialog.askopenfilename()
         self.labelSelectDirectory.text = self.selectedFile
         self.converter.open_file_to_read(self.selectedFile)
+        
+    def create_button_to_convert(self):
+        self.btnConvert = Button(
+            text = "Konwertuj",
+            size_hint = (0.3, 0.075),
+            pos_hint = {"center_x": 0.5, "center_y": 0.05}
+        )
 
     def create_button_to_select_directory_to_open(self):
         self.labelSelectDirectoryInfo = Label(
@@ -63,14 +70,7 @@ class MainWindow(MDApp):
             text = "Wybierz",
             size_hint = (0.1, 0.05),
             pos_hint = {"center_x": 0.83, "center_y": 0.93})
-        
-    def create_button_to_convert(self):
-        self.btnConvert = Button(
-            text = "Konwertuj",
-            size_hint = (0.3, 0.075),
-            pos_hint = {"center_x": 0.5, "center_y": 0.05}
-        )
-            
+                    
     def add_widgets_to_screen(self):
         self.screen.add_widget(self.btnSelectDirectoryToOpen)
         self.screen.add_widget(self.labelSelectDirectoryInfo)

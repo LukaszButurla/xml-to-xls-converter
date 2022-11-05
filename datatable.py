@@ -17,7 +17,7 @@ class DataTableWithData(MDDataTable):
         
         self.table = MDDataTable(
             use_pagination = True,
-            rows_num = 100,
+            rows_num = 50,
             size_hint = (0.9, 0.8),
             pos_hint = {"center_x" : 0.5, "center_y" : 0.5},
             column_data = [

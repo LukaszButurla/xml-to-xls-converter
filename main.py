@@ -19,6 +19,10 @@ class MainWindow(MDApp):
     def select_file_window(self, btn):
         self.selectedFile = filedialog.askopenfilename()
         self.labelSelectDirectory.text = self.selectedFile
+        
+    def select_directory_to_save_window(self, btn):
+        self.selectedDirectory = filedialog.askdirectory()
+        self.labelSaveDirectory.text = self.selectedDirectory
     
     def Convert(self, btn):
         
@@ -74,6 +78,7 @@ class MainWindow(MDApp):
             text = "Wybierz",
             size_hint = (0.1, 0.05),
             pos_hint = {"center_x": 0.83, "center_y": 0.93})
+        self.btnSelectDirectoryToSave.bind(on_press = partial(self.select_directory_to_save_window))
                     
     def add_widgets_to_screen(self):
         self.screen.add_widget(self.btnSelectDirectoryToOpen)

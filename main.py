@@ -19,6 +19,9 @@ class MainWindow(MDApp):
     def select_file_window(self, btn):
         self.selectedFile = filedialog.askopenfilename()
         self.labelSelectDirectory.text = self.selectedFile
+    
+    def Convert(self, btn):
+        
         self.converter.open_file_to_read(self.selectedFile)
         
     def create_button_to_convert(self):
@@ -27,6 +30,7 @@ class MainWindow(MDApp):
             size_hint = (0.3, 0.075),
             pos_hint = {"center_x": 0.5, "center_y": 0.05}
         )
+        self.btnConvert.bind(on_press = partial(self.Convert))
 
     def create_button_to_select_directory_to_open(self):
         self.labelSelectDirectoryInfo = Label(
@@ -83,14 +87,13 @@ class MainWindow(MDApp):
     def build(self):
         Window.size = 1400, 900     
         self.screen = Screen()
-        # self.btnAdd = Button(text = "Add", size_hint = (0.2, 0.2), pos_hint = {"center_x": 0.9, "center_y": 0.9})
-        # self.btnAdd.bind(on_press = partial(self.add_row, "Nazwa", "cena", "ilosc"))
+        self.datatableClass = DataTableWithData(self.screen)
+        self.converter = Converter(self.screen, self.datatableClass)
+        self.selectedFile = ""
         self.create_button_to_select_directory_to_open()
         self.create_button_to_select_directory_to_save()
         self.create_button_to_convert()
         self.add_widgets_to_screen()
-        self.datatableClass = DataTableWithData(self.screen)
-        self.converter = Converter(self.screen, self.datatableClass)
         return self.screen
     
 

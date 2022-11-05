@@ -15,15 +15,11 @@ from converter import Converter
 
 class MainWindow(MDApp):
     
-    def add_row(self, name, price, amount, button):
-        
-        self.dataTable.add_row((name, price, amount))
-        # return super().on_dismiss()
-        
+            
     def select_file_window(self, btn):
         self.selectedFile = filedialog.askopenfilename()
         self.labelSelectDirectory.text = self.selectedFile
-        Converter().open_file_to_read(self.selectedFile)
+        self.converter.open_file_to_read(self.selectedFile)
 
     def create_button_to_select_directory_to_open(self):
         self.labelSelectDirectoryInfo = Label(
@@ -94,6 +90,7 @@ class MainWindow(MDApp):
         self.create_button_to_convert()
         self.add_widgets_to_screen()
         self.datatableClass = DataTableWithData(self.screen)
+        self.converter = Converter(self.screen, self.datatableClass)
         return self.screen
     
 

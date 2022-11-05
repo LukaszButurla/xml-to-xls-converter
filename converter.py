@@ -1,5 +1,9 @@
 class Converter:
     
+    def __init__(self, screen, datatableClass):
+        self.screen = screen
+        self.datatableClass = datatableClass
+            
     def open_file_to_read(self, pathToRead):
         
         with open(pathToRead, "r", encoding="UTF-8") as fileRead:
@@ -32,10 +36,7 @@ class Converter:
                     
                     lines = lines[subjectEnd+10:]
                     
-                    
-                    print(index)
-                    print(amount)
-                    print(price)
+                    self.datatableClass.add_row(index, price, amount)
                 
                 except:
                     print("Error")

@@ -7,7 +7,11 @@ class DataTableWithData(MDDataTable):
 
         self.screen = screen
         self.create_data_table()
-        self.add_datatable_to_screen()
+        self.add_datatable_to_screen()   
+        
+    def add_row(self, index, price, amount):
+        self.table.add_row((index, price, amount))   
+    
     
     def create_data_table(self):
         

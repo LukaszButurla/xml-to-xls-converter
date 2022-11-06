@@ -8,6 +8,7 @@ from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.metrics import dp
 from tkinter import filedialog
+import os
 
 from datatable import DataTableWithData
 from converter import Converter
@@ -26,7 +27,9 @@ class MainWindow(MDApp):
     
     def Convert(self, btn):
         
-        self.converter.open_file_to_read(self.selectedFile, self.selectedDirectory)
+        if self.selectedFile.endswith(".xml") and os.path.exists(self.selectedDirectory):
+        
+            self.converter.open_file_to_read(self.selectedFile, self.selectedDirectory)
         
     def create_button_to_convert(self):
         self.btnConvert = Button(
@@ -95,6 +98,7 @@ class MainWindow(MDApp):
         self.datatableClass = DataTableWithData(self.screen)
         self.converter = Converter(self.screen, self.datatableClass)
         self.selectedFile = ""
+        self.selectedDirectory = ""
         self.create_button_to_select_directory_to_open()
         self.create_button_to_select_directory_to_save()
         self.create_button_to_convert()

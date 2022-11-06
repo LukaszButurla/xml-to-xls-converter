@@ -18,7 +18,7 @@ class MainWindow(MDApp):
     
             
     def select_file_window(self, btn):
-        self.selectedFile = filedialog.askopenfilename()
+        self.selectedFile = filedialog.askopenfilename(filetypes=[("Text files", "xml")])
         self.labelSelectDirectory.text = self.selectedFile
         
     def select_directory_to_save_window(self, btn):

@@ -26,7 +26,7 @@ class MainWindow(MDApp):
     
     def Convert(self, btn):
         
-        self.converter.open_file_to_read(self.selectedFile)
+        self.converter.open_file_to_read(self.selectedFile, self.selectedDirectory)
         
     def create_button_to_convert(self):
         self.btnConvert = Button(

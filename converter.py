@@ -1,4 +1,5 @@
 import csv
+import os
 
 class Converter:
     
@@ -6,7 +7,7 @@ class Converter:
         self.screen = screen
         self.datatableClass = datatableClass
             
-    def open_file_to_read(self, pathToRead):
+    def open_file_to_read(self, pathToRead, directoryToSave):
         
         with open(pathToRead, "r", encoding="UTF-8") as fileRead:
 
@@ -47,15 +48,19 @@ class Converter:
                     print("Error")
                 
             else:
-                self.write_to_file()
+                file = os.path.basename(pathToRead)
+                fileDot = file.find(".")
+                fileName = file[:fileDot] + ".xls"
+                pathToSave = os.path.join(directoryToSave, fileName)
+                print(pathToSave)
+                
+                self.write_to_file(pathToSave)
                     
-    def write_to_file(self):
-            
-        path = r"C:\test\test.xls"
+    def write_to_file(self, pathToSave):
         
         try:
         
-            with open(path, "w+", encoding="utf-8", newline="") as f:
+            with open(pathToSave, "w+", encoding="utf-8", newline="") as f:
                     
                 writer = csv.writer(f)
             

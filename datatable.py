@@ -11,6 +11,12 @@ class DataTableWithData(MDDataTable):
         
     def add_row(self, index, price, amount):
         self.table.add_row((index, price, amount))   
+        
+    def clear_data_table(self):
+        
+        tableLen = len(self.table.row_data)
+        for i in range(tableLen):
+            self.table.remove_row(self.table.row_data[-1])
     
     
     def create_data_table(self):

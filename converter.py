@@ -19,6 +19,7 @@ class Converter:
             amountOfSubjects = lines[amountOfSubjectsStart+15:amountOfSubjectsEnd]
                 
             self.listOfData = []
+            self.datatableClass.clear_data_table()
                 
             for subject in range(int(amountOfSubjects)):
                     
@@ -53,8 +54,8 @@ class Converter:
                 fileDot = file.find(".")
                 fileName = file[:fileDot] + ".xls"
                 pathToSave = os.path.join(directoryToSave, fileName)
-                print(pathToSave)
-                    
+                print(pathToSave)                    
+                
                 self.write_to_file(pathToSave)
                     
     def write_to_file(self, pathToSave):

@@ -18,7 +18,7 @@ class MainWindow(MDApp):
     
             
     def select_file_window(self, btn):
-        self.selectedFile = filedialog.askopenfilename()
+        self.selectedFile = filedialog.askopenfilename(filetypes=[("Text files", "xml")])
         self.labelSelectDirectory.text = self.selectedFile
         
     def select_directory_to_save_window(self, btn):
@@ -29,7 +29,7 @@ class MainWindow(MDApp):
         
         if self.selectedFile.endswith(".xml") and os.path.exists(self.selectedDirectory):
         
-            self.converter.open_file_to_read(self.selectedFile, self.selectedDirectory)
+            self.converter.convert_files(self.selectedFile, self.selectedDirectory)
         
     def create_button_to_convert(self):
         self.btnConvert = Button(
@@ -48,13 +48,14 @@ class MainWindow(MDApp):
             font_size = 16)
         
         self.labelSelectDirectory = Label(
-            text = r"C:\test\test\test\test.xml",
+            text = r"",
             halign = "left",
             size_hint = (0.5, 0.5),
-            pos_hint = {"center_x": 0.23, "center_y": 0.93},
+            pos_hint = {"center_x": 0.22, "center_y": 0.93},
             color = (0, 0, 0, 1),
-            font_size = 16)
-        self.labelSelectDirectory.text_size = (480, 30)
+            font_size = 16,
+            text_size = (500, 100))
+        self.labelSelectDirectory.text_size = (None, None)
         
         self.btnSelectDirectoryToOpen = Button(
             text = "Wybierz",

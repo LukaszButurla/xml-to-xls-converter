@@ -72,7 +72,7 @@ class MainWindow(MDApp):
             font_size = 16)
         
         self.labelSaveDirectory = Label(
-            text = r"C:\test\test\test\test.xml",
+            text = r"",
             size_hint = (0.3, 0.02),
             pos_hint = {"center_x": 0.6, "center_y": 0.93},
             color = (0, 0, 0, 1),

@@ -1,4 +1,4 @@
-
+import os
 
 class Convert_to_price_list:
     
@@ -160,7 +160,11 @@ class Convert_to_price_list:
         
         with open(pathToRead, "r", encoding="UTF-8") as fileRead:
             
-                pathToSave = "{}/{}".format(pathToSave, "testtesddat.xml")
+                file = os.path.basename(pathToRead)
+                fileDot = file.find(".")
+                fileName = file[:fileDot] + "_cennik.xml"
+                pathToSave = os.path.join(pathToSave, fileName)   
+    
                 
                 with open(pathToSave, "w", encoding="utf-8") as fileSave:
 

@@ -25,13 +25,13 @@ class Convert_to_price_list:
         <TOWAR>
 <KOD>{code}</KOD>
 <KOD_H>{code2}</KOD_H>
-<TYP>0</TYP>
+<TYP>1</TYP>
 <PRODUKT>0</PRODUKT>
 <NUMER_KAT/>
 <SWW/>
 <EAN/>
 <NAZWA>{name}</NAZWA>
-<GRUPA>Grupa Główna</GRUPA>
+<GRUPA>{group}</GRUPA>
 <URL/>
 <NIEAKTYWNY>0</NIEAKTYWNY>
 <OPIS>PRZYGOTOWANIE DOKUMENTACJI DOTYCZĄCEJ OCHRONY DANYCH OSOBOWYCH</OPIS>
@@ -164,7 +164,6 @@ class Convert_to_price_list:
                 
                 with open(pathToSave, "w", encoding="utf-8") as fileSave:
 
-                # fileSave = open(pathToSave, "w+", encoding="utf-8")
                 
                     fileSave.write(self.formStart)
 
@@ -208,11 +207,17 @@ class Convert_to_price_list:
                             
                             vatStart = subject.find("<Procent>")
                             vatEnd = subject.find("</Procent>")
-                            vat = "23"
+                            
+                            vat = subject[vatStart+9:vatEnd]
+                            
+                            if "P" in vat.upper():
+                                vat = vat[1:]
+                            
+                            group = "Grupa Główna"
                                 
                             lines = lines[subjectEnd+10:]
                             
-                            fileSave.write(self.form.format(code = index, code2 = index, name = fullDescription, unit = unit, vat_sell = vat, vat_buy = vat, price_brutto = price))
+                            fileSave.write(self.form.format(code = index, code2 = index, name = fullDescription, group = group, unit = unit, vat_sell = vat, vat_buy = vat, price_brutto = price))
                         
                         else:
                             fileSave.write(self.formEnd)

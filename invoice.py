@@ -69,4 +69,5 @@ class Invoice:
                     writer.writerow(data)
                         
         except:
+            f.close()
             print("Error save")

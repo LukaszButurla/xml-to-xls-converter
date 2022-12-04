@@ -9,8 +9,8 @@ class DataTableWithData(MDDataTable):
         self.create_data_table()
         self.add_datatable_to_screen()   
         
-    def add_row(self, index, price, amount):
-        self.table.add_row((index, price, amount))   
+    def add_row(self, index, description, amount, pricePerPiece, vat, priceNetto):
+        self.table.add_row((index, description, amount, pricePerPiece, vat, priceNetto))   
         
     def clear_data_table(self):
         
@@ -27,9 +27,12 @@ class DataTableWithData(MDDataTable):
             size_hint = (0.9, 0.8),
             pos_hint = {"center_x" : 0.5, "center_y" : 0.5},
             column_data = [
-                ("Nazwa", dp(100)),
-                ("Kwota", dp(50)),
-                ("Ilość", dp(50))])
+                ("Index", dp(40)),
+                ("Opis", dp(80)),
+                ("Ilość", dp(30)),
+                ("Cena jednostkowa", (40)),
+                ("vat", (30)),
+                ("Wartość netto", (45))])
         
     def add_datatable_to_screen(self):
         self.screen.add_widget(self.table)

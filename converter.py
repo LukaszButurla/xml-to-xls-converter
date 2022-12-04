@@ -5,10 +5,9 @@ from converterPriceList import Convert_to_price_list
 
 class Converter:
     
-    def __init__(self, screen, datatableClass):
+    def __init__(self, screen):
         self.screen = screen
-        self.datatableClass = datatableClass
-        self.invoice = Invoice(datatableClass)
+        self.invoice = Invoice()
         self.priceList = Convert_to_price_list()
         
         

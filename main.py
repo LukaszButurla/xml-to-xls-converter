@@ -97,7 +97,7 @@ class MainWindow(MDApp):
         Window.size = 1400, 900     
         self.screen = Screen()
         self.datatableClass = DataTableWithData(self.screen)
-        self.converter = Converter(self.screen, self.datatableClass)
+        self.converter = Converter(self.screen)
         self.selectedFile = ""
         self.selectedDirectory = ""
         self.create_button_to_select_directory_to_open()

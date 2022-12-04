@@ -3,8 +3,8 @@ import os
 
 class Invoice:
     
-    def __init__(self, datatable):
-        self.datatableClass = datatable
+    def __init__(self):
+        pass
 
     def open_file_to_read(self, pathToRead, directoryToSave):
             
@@ -18,7 +18,7 @@ class Invoice:
                 amountOfSubjects = lines[amountOfSubjectsStart+15:amountOfSubjectsEnd]
                     
                 self.listOfData = []
-                self.datatableClass.clear_data_table()
+                # self.datatableClass.clear_data_table()
                     
                 try:
                     

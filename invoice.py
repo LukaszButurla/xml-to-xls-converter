@@ -43,8 +43,8 @@ class Invoice:
                             
                         lines = lines[subjectEnd+10:]
                             
-                        self.datatableClass.add_row(index, price, amount)
-                        self.listOfData.append([index, price, amount])
+                        # self.datatableClass.add_row(index, price, amount)
+                        self.listOfData.append([index, amount, price])
                                             
                         
                     else:

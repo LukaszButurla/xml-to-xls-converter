@@ -20,6 +20,7 @@ class MainWindow(MDApp):
     def select_file_window(self, btn):
         self.selectedFile = filedialog.askopenfilename(filetypes=[("Text files", "xml")])
         self.labelSelectDirectory.text = self.selectedFile
+        self.datatableClass.add_values_from_file(self.selectedFile)
         
     def select_directory_to_save_window(self, btn):
         self.selectedDirectory = filedialog.askdirectory()
@@ -97,7 +98,7 @@ class MainWindow(MDApp):
         Window.size = 1400, 900     
         self.screen = Screen()
         self.datatableClass = DataTableWithData(self.screen)
-        self.converter = Converter(self.screen, self.datatableClass)
+        self.converter = Converter(self.screen)
         self.selectedFile = ""
         self.selectedDirectory = ""
         self.create_button_to_select_directory_to_open()

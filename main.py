@@ -43,20 +43,24 @@ class MainWindow(MDApp):
     def create_button_to_select_directory_to_open(self):
         self.labelSelectDirectoryInfo = Label(
             text = "Ścieżka pliku do otwarcia:",
-            size_hint = (0.2, 0.02),
-            pos_hint = {"center_x": 0.12, "center_y": 0.97},
+            halign = "left",
+            valign = "center",
+            size = (450, 75),
+            pos_hint = {"center_x": 0.18, "center_y": 0.97},
             color = (0, 0, 0, 1),
             font_size = 16)
+        self.labelSelectDirectoryInfo.text_size = self.labelSelectDirectoryInfo.size
         
         self.labelSelectDirectory = Label(
             text = r"",
+            size = (450, 75),
             halign = "left",
-            size_hint = (0.5, 0.5),
-            pos_hint = {"center_x": 0.22, "center_y": 0.93},
+            valign = "center",
+            pos_hint = {"center_x": 0.18, "center_y": 0.93},
             color = (0, 0, 0, 1),
-            font_size = 16,
-            text_size = (500, 100))
-        self.labelSelectDirectory.text_size = (None, None)
+            font_size = 16)
+        self.labelSelectDirectory.text_size = self.labelSelectDirectory.size
+        
         
         self.btnSelectDirectoryToOpen = Button(
             text = "Wybierz",
@@ -67,17 +71,23 @@ class MainWindow(MDApp):
     def create_button_to_select_directory_to_save(self):
         self.labelSaveDirectoryInfo = Label(
             text = "Ścieżka pliku do zapisu:",
-            size_hint = (0.2, 0.02),
-            pos_hint = {"center_x": 0.6, "center_y": 0.97},
+            size = (450, 75),
+            halign = "left",
+            valign = "center",
+            pos_hint = {"center_x": 0.7, "center_y": 0.97},
             color = (0, 0, 0, 1),
             font_size = 16)
+        self.labelSaveDirectoryInfo.text_size = self.labelSaveDirectoryInfo.size
         
         self.labelSaveDirectory = Label(
             text = r"",
-            size_hint = (0.3, 0.02),
-            pos_hint = {"center_x": 0.6, "center_y": 0.93},
+            size = (450, 75),
+            halign = "left",
+            valign = "center",
+            pos_hint = {"center_x": 0.7, "center_y": 0.93},
             color = (0, 0, 0, 1),
             font_size = 16)
+        self.labelSaveDirectory.text_size = self.labelSaveDirectory.size
         
         self.btnSelectDirectoryToSave = Button(
             text = "Wybierz",

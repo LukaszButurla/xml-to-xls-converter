@@ -1,5 +1,6 @@
 from kivymd.uix.datatables import MDDataTable
 from kivy.metrics import dp
+from kivy.uix.label import Label
 
 class DataTableWithData(MDDataTable):
     
@@ -8,6 +9,7 @@ class DataTableWithData(MDDataTable):
         self.screen = screen
         self.create_data_table()
         self.add_datatable_to_screen()   
+        self.add_label_with_vat_price()
         
     def add_values_from_file(self, pathToRead):
         
@@ -21,6 +23,7 @@ class DataTableWithData(MDDataTable):
                 amountOfSubjects = lines[amountOfSubjectsStart+15:amountOfSubjectsEnd]
                     
                 self.clear_data_table()
+                self.priceVatAll = 0
                     
                 try:
                     
@@ -69,12 +72,14 @@ class DataTableWithData(MDDataTable):
                         priceNetto = subject[priceNettoStart+14:priceNettoEnd]                                           
                             
                         lines = lines[subjectEnd+10:]
+                        
+                        self.priceVatAll += float(priceVat)
                             
                         self.add_row(index, description, amount, price, vat, priceVat, priceNetto)
                                             
                         
                     else:
-                        pass
+                        self.labelVatPrice.text = "Podsumowanie wartość vat:\n{:.2f}".format(self.priceVatAll)
                 except:
                     print("Error")
         
@@ -106,3 +111,15 @@ class DataTableWithData(MDDataTable):
         
     def add_datatable_to_screen(self):
         self.screen.add_widget(self.table)
+        
+    def add_label_with_vat_price(self):
+        
+        self.labelVatPrice = Label(
+            text = "Podsumowanie wartość vat:",
+            halign = "left",
+            size_hint = (0.2, 0.02),
+            pos_hint = {"center_x": 0.75, "center_y": 0.07},
+            color = (0, 0, 0, 1),
+            font_size = 18)
+        
+        self.screen.add_widget(self.labelVatPrice)
